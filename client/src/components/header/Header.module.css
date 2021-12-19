@@ -52,3 +52,24 @@
 .actionBtn:first-child {
     margin-right: 28px;
 }
+
+.userInfo {
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #566885;
+}
+
+.avatar {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.avatar img {
+    width: 100%;
+}
