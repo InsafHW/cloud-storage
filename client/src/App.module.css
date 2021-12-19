@@ -1,0 +1,6 @@
+.app {
+    padding-top: 75px;
+    width: 100%;
+    height: calc(100vh - 75px);
+    background-color: #E4E1E1;
+}

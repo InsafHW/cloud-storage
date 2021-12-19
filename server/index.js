@@ -8,7 +8,7 @@ const SERVER_PORT = config.get('serverPort')
 const DB_URL = config.get('dbUrl')
 const app = express()
 
-app.use(express.json());
+app.use(express.json())
 app.use('/api/auth', authRouter)
 
 async function start() {
