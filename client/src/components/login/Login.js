@@ -43,6 +43,7 @@ const Login = () => {
     )
 }
 
-export {
+export
+{
     Login
 }

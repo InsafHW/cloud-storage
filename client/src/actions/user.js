@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {clearToken, saveToken} from '../utils/token'
-import {setAuth, setUser} from '../reducers/userReducer'
+import {clearToken, getToken, saveToken} from '../utils/token'
+import {setUser} from '../reducers/userReducer'
 
 const BASE_URL = 'http://localhost:5000/api/auth'
 
@@ -42,16 +42,28 @@ const login = ({email, password}) => {
     }
 }
 
-const logout = () => {
-    return dispatch => {
-        dispatch(setUser({}))
-        dispatch(setAuth(false))
-        clearToken()
+const auth = () => {
+    return async dispatch => {
+        try {
+            const token = getToken()
+            const response = await axios.get(`${BASE_URL}/`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.data.user) {
+                dispatch(setUser(response.data.user))
+                saveToken(response.data.token)
+            }
+        } catch (e) {
+            clearToken()
+            console.log(e)
+        }
     }
 }
 
 export {
     register,
     login,
-    logout
+    auth
 }

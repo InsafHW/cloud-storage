@@ -8,7 +8,12 @@ function clearToken() {
     localStorage.removeItem(TOKEN_KEY)
 }
 
+function getToken() {
+    return localStorage.getItem(TOKEN_KEY)
+}
+
 export {
     saveToken,
-    clearToken
+    clearToken,
+    getToken
 }

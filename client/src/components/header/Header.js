@@ -3,9 +3,9 @@ import Logo from '../../assets/logo.svg'
 import classes from './Header.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import defaultLogo from '../../assets/userDefaultLogo.svg'
-import {useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {joinClassNames} from '../../utils/joinClassNames'
-import {logout} from '../../actions/user'
+import {logout} from '../../reducers/userReducer'
 
 const Header = () => {
     const isAuth = useSelector(state => state.user.isAuth)
@@ -33,9 +33,9 @@ const Header = () => {
         <div className={classes.header}>
             <div className={classes.headerContainer}>
                 <div className={classes.info}>
-                    <div className={classes.logo}>
+                    <Link to={'/'} className={classes.logo}>
                         <img src={Logo} />
-                    </div>
+                    </Link>
                     <div className={classes.title}>MERN CLOUD</div>
                 </div>
                 {isAuth ? (

@@ -1,6 +1,7 @@
 const Router = require('express')
 const {body} = require('express-validator')
 const authorizationController = require('../controllers/authorizationController')
+const authMiddleware = require('../middleware/auth.middleware')
 
 const router = new Router()
 
@@ -19,6 +20,12 @@ router.post(
 router.post(
     '/login',
     authorizationController.login
+)
+
+router.get(
+    '/',
+    authMiddleware,
+    authorizationController.auth
 )
 
 module.exports = router

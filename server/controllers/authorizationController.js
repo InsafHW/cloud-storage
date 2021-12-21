@@ -52,7 +52,7 @@ class AuthorizationController {
                 })
         } catch (e) {
             console.log(e)
-            res.send({message: 'Server error'})
+            res.json({message: 'Server error'})
         }
     }
 
@@ -95,7 +95,39 @@ class AuthorizationController {
             })
         } catch (e) {
             console.log(e)
-            res.send({message: 'Server error'})
+            res.json({message: 'Server error'})
+        }
+    }
+
+    async auth(req, res) {
+        try {
+            const {userId} = req
+            if (!userId) {
+                return res.json({
+                    message: 'User not authenticated'
+                })
+            }
+            const user = await User.findOne({_id: userId})
+            const token = jwt.sign({
+                userId
+            }, SECRET_KEY, {
+                expiresIn: '30m'
+            })
+
+            return res.json({
+                token,
+                user: {
+                    id: user._id,
+                    email: user.email,
+                    diskSpace: user.diskSpace,
+                    usedSpace: user.usedSpace,
+                    firstName: user.firstName,
+                    lastName: user.lastName
+                }
+            })
+        } catch (e) {
+            console.log(e)
+            res.json({message: 'Server error'})
         }
     }
 }
