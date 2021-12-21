@@ -3,20 +3,22 @@ import classes from './Registration.module.css'
 import {Button} from '../ui/button/Button'
 import {useState} from 'react'
 import {register} from '../../actions/user'
+import {useDispatch} from 'react-redux'
 
 const Registration = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
 
     function onRegister() {
-        register({
+        dispatch(register({
             firstName,
             lastName,
             email,
             password
-        })
+        }))
     }
 
     return (

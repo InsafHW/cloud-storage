@@ -57,6 +57,7 @@
 .userInfo {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .login {
@@ -73,4 +74,26 @@
 
 .avatar img {
     width: 100%;
+}
+
+.dropDown {
+    position: absolute;
+    background-color: #fff;
+    top: 40px;
+    transform: translateX(50%);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+.dropDown.show {
+    display: block;
+}
+
+.exit {
+    font-size: 14px;
+    line-height: 16px;
+    color: #566885;
+    cursor: pointer;
 }

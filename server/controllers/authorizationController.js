@@ -31,13 +31,23 @@ class AuthorizationController {
                 lastName
             })
             await user.save()
+
+            const token = jwt.sign({
+                userId: user._id
+            }, SECRET_KEY, {
+                expiresIn: '30m'
+            })
             return res
                 .json({
+                    token,
                     message: 'User was created',
                     user: {
                         email,
                         firstName,
-                        lastName
+                        lastName,
+                        id: user._id,
+                        diskSpace: user.diskSpace,
+                        usedSpace: user.usedSpace
                     }
                 })
         } catch (e) {
@@ -73,7 +83,9 @@ class AuthorizationController {
                         id: candidate._id,
                         email: candidate.email,
                         diskSpace: candidate.diskSpace,
-                        usedSpace: candidate.usedSpace
+                        usedSpace: candidate.usedSpace,
+                        firstName: candidate.firstName,
+                        lastName: candidate.lastName
                     }
                 })
             }
