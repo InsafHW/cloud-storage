@@ -1,6 +1,7 @@
 const Router = require('express')
-const {body} = require('express-validator');
+const {body} = require('express-validator')
 const authorizationController = require('../controllers/authorizationController')
+const authMiddleware = require('../middleware/auth.middleware')
 
 const router = new Router()
 
@@ -9,14 +10,22 @@ router.post(
     body('email', 'Email is invalid').isEmail(),
     body('password', 'Password length must be from 8 to 15').isLength({
         min: 8,
-        max: 15,
+        max: 15
     }),
+    body('firstName', 'First name should not be empty').notEmpty(),
+    body('lastName', 'Last name should not be empty').notEmpty(),
     authorizationController.register
 )
 
 router.post(
     '/login',
     authorizationController.login
+)
+
+router.get(
+    '/',
+    authMiddleware,
+    authorizationController.auth
 )
 
 module.exports = router

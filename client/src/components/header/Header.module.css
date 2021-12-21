@@ -5,6 +5,7 @@
     left: 0;
     right: 0;
     z-index: 100;
+    padding: 0 30px;
 }
 
 .headerContainer {
@@ -51,4 +52,48 @@
 
 .actionBtn:first-child {
     margin-right: 28px;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.login {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #566885;
+}
+
+.avatar {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.avatar img {
+    width: 100%;
+}
+
+.dropDown {
+    position: absolute;
+    background-color: #fff;
+    top: 40px;
+    transform: translateX(50%);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+.dropDown.show {
+    display: block;
+}
+
+.exit {
+    font-size: 14px;
+    line-height: 16px;
+    color: #566885;
+    cursor: pointer;
 }
