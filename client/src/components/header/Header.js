@@ -9,7 +9,7 @@ import {logout} from '../../reducers/userReducer'
 
 const Header = () => {
     const isAuth = useSelector(state => state.user.isAuth)
-    const {firstName, avatarUrl} = useSelector(state => state.user.user)
+    const user = useSelector(state => state.user.user)
     const [showMenu, setShowMenu] = useState(false)
     const ref = useRef()
     const dispatch = useDispatch()
@@ -40,13 +40,13 @@ const Header = () => {
                 </div>
                 {isAuth ? (
                     <div className={classes.userInfo}>
-                        <div className={classes.login}>{firstName}</div>
+                        <div className={classes.login}>{user.firstName}</div>
                         <div
                             onClick={() => setShowMenu(!showMenu)}
                             className={classes.avatar}
                             ref={ref}
                         >
-                            <img src={avatarUrl || defaultLogo} />
+                            <img src={user.avatarUrl || defaultLogo} />
                         </div>
                         <div className={joinClassNames(classes.dropDown, showMenu ? classes.show : '')}>
                             <div
