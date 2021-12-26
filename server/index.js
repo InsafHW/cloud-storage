@@ -4,6 +4,7 @@ const config = require('config')
 const cors = require('cors')
 
 const authRouter = require('./routes/auth.routes')
+const fileRouter = require('./routes/file.routes')
 
 const SERVER_PORT = config.get('serverPort')
 const DB_URL = config.get('dbUrl')
@@ -12,6 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.use('/api/auth', authRouter)
+app.use('/api/file', fileRouter)
 
 async function start() {
     try {
