@@ -3,8 +3,11 @@ const {validationResult} = require('express-validator')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 const User = require('../models/User')
+const File = require('../models/File')
+const fileService = require('../services/fileService')
 
 const SECRET_KEY = config.get('secretKey')
+const TOKEN_EXPIRATION = '1h'
 
 class AuthorizationController {
     async register(req, res) {
@@ -31,11 +34,15 @@ class AuthorizationController {
                 lastName
             })
             await user.save()
+            await fileService.createDir(new File({
+                userId: user._id,
+                name: ''
+            }))
 
             const token = jwt.sign({
                 userId: user._id
             }, SECRET_KEY, {
-                expiresIn: '30m'
+                expiresIn: TOKEN_EXPIRATION
             })
             return res
                 .json({
@@ -74,7 +81,7 @@ class AuthorizationController {
                 const token = jwt.sign({
                     userId: candidate._id
                 }, SECRET_KEY, {
-                    expiresIn: '30m'
+                    expiresIn: TOKEN_EXPIRATION
                 })
 
                 return res.json({
@@ -111,7 +118,7 @@ class AuthorizationController {
             const token = jwt.sign({
                 userId
             }, SECRET_KEY, {
-                expiresIn: '30m'
+                expiresIn: TOKEN_EXPIRATION
             })
 
             return res.json({

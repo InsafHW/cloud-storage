@@ -9,7 +9,6 @@ const authMiddleware = (req, res, next) => {
     }
     try {
         const token = req.headers.authorization.split(' ')[1]
-        console.log(token)
         if (!token) {
             return res
                 .status(401)
@@ -18,7 +17,6 @@ const authMiddleware = (req, res, next) => {
                 })
         }
         const {userId} = jwt.verify(token, SECRET_KEY)
-        console.log(userId)
         req.userId = userId
         next()
     } catch (e) {
