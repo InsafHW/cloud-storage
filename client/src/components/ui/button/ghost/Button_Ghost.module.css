@@ -1,0 +1,17 @@
+.button {
+    border: 1px solid #566885;
+    background-color: transparent;
+    border-radius: 14px;
+    padding: 8px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 55px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #566885;
+}
+
+.button:hover {
+    opacity: 0.8;
+}

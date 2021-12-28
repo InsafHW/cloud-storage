@@ -97,7 +97,7 @@ class AuthorizationController {
                 })
             }
 
-            return res.json({
+            return res.status(401).json({
                 message: 'Invalid password'
             })
         } catch (e) {

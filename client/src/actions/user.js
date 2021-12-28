@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {clearToken, getToken, saveToken} from '../utils/token'
-import {setUser} from '../reducers/userReducer'
+import {setIsLoading, setUser} from '../reducers/userReducer'
+import {getFiles} from './file'
 
 const BASE_URL = 'http://localhost:5000/api/auth'
 
@@ -18,8 +19,10 @@ const register = ({
                 email,
                 password
             })
-            dispatch(setUser(response.data.user))
-            saveToken(response.data.token)
+            if (response.data.user) {
+                dispatch(setUser(response.data.user))
+                saveToken(response.data.token)
+            }
         } catch (e) {
             console.log(e)
         }
@@ -33,8 +36,11 @@ const login = ({email, password}) => {
                 email,
                 password
             })
-            dispatch(setUser(response.data.user))
-            saveToken(response.data.token)
+            if (response.data.user) {
+                dispatch(getFiles())
+                dispatch(setUser(response.data.user))
+                saveToken(response.data.token)
+            }
         } catch (e) {
             clearToken()
             console.log(e)
@@ -52,12 +58,15 @@ const auth = () => {
                 }
             })
             if (response.data.user) {
+                dispatch(getFiles())
                 dispatch(setUser(response.data.user))
                 saveToken(response.data.token)
             }
         } catch (e) {
             clearToken()
             console.log(e)
+        } finally {
+            dispatch(setIsLoading(false))
         }
     }
 }

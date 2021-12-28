@@ -1,0 +1,28 @@
+.file {
+    display: grid;
+    grid-template-columns: 1fr 4fr repeat(3, 1fr) 0.5fr;
+    border-bottom: 2px solid #566885;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #566885;
+}
+
+.date {
+    grid-column-start: 5;
+}
+
+.size {
+    grid-column-start: 6;
+}
+
+.icon {
+    color: #566885;
+    margin-right: 32px;
+}

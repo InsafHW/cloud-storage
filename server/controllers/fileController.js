@@ -1,16 +1,15 @@
 const fileService = require('../services/fileService')
 const File = require('../models/File')
-const User = require('../models/User')
 
 class FileController {
     async getFiles(req, res) {
         try {
             const {userId} = req
-            console.log(req.query.parent)
             const files = await File.find({userId, parentId: req.query.parent})
             return res.json(files)
         } catch (e) {
-
+            console.log(e)
+            return res.json(e)
         }
     }
 

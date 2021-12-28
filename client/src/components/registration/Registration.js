@@ -1,6 +1,6 @@
 import {Input} from '../ui/input/Input'
 import classes from './Registration.module.css'
-import {Button} from '../ui/button/Button'
+import {Button_Default} from '../ui/button/default/Button_Default'
 import {useState} from 'react'
 import {register} from '../../actions/user'
 import {useDispatch} from 'react-redux'
@@ -48,7 +48,7 @@ const Registration = () => {
                     value={password}
                 />
             </div>
-            <Button
+            <Button_Default
                 className={classes.registerBtn}
                 text={'Зарегестрироваться'}
                 onClick={onRegister}
