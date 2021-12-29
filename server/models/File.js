@@ -31,6 +31,10 @@ const fileSchema = new Schema({
     path: {
         type: String,
         default: ''
+    },
+    date: {
+        type: Date,
+        default: Date.now()
     }
 })
 

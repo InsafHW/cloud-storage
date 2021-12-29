@@ -6,37 +6,7 @@ import {useSelector} from 'react-redux'
 import {File} from './file/File'
 
 const FileList = () => {
-    // const {files} = useSelector(state => state.files)
-
-    const files = [
-        {
-            _id: '1',
-            type: 'Dir',
-            name: 'Test1'
-        },
-        {
-            _id: '2',
-            type: 'Dir',
-            name: 'Test2'
-        },
-        {
-            _id: '3',
-            type: 'Dir',
-            name: 'Test3'
-        },
-        {
-            _id: '4',
-            type: 'File',
-            name: 'TestFile'
-        },
-        {
-            _id: '5',
-            type: 'Dir',
-            name: 'Test6'
-        }
-    ]
-
-    console.log(files)
+    const {files} = useSelector(state => state.files)
 
     return (
         <div className={classes.fileList}>
@@ -63,7 +33,7 @@ const FileList = () => {
                             key={f._id}
                             name={f.name}
                             type={f.type}
-                            date={'28.12.2021'}
+                            date={f.date ? f.date.slice(0, 10) : ''}
                             size={f.size}
                         />
                     ))}

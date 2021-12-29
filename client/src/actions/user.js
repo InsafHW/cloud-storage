@@ -37,9 +37,9 @@ const login = ({email, password}) => {
                 password
             })
             if (response.data.user) {
+                saveToken(response.data.token)
                 dispatch(getFiles())
                 dispatch(setUser(response.data.user))
-                saveToken(response.data.token)
             }
         } catch (e) {
             clearToken()
